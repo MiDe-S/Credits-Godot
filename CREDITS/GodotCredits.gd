@@ -1,12 +1,17 @@
 extends Node2D
 
+export var to_scene : PackedScene = null
+export var title_color := Color.blueviolet
+export var text_color := Color.white
+export var title_font : DynamicFont = null
+export var text_font : DynamicFont = null
+
 const section_time := 2.0
 const line_time := 0.3
 const base_speed := 100
 const speed_up_multiplier := 10.0
-const title_color := Color.blueviolet
 
-var scroll_speed := base_speed
+var scroll_speed : float = base_speed
 var speed_up := false
 
 onready var line := $CreditsContainer/Line
@@ -58,7 +63,7 @@ var credits = [
 
 
 func _process(delta):
-	var scroll_speed = base_speed * delta
+	scroll_speed = base_speed * delta
 	
 	if section_next:
 		section_timer += delta * speed_up_multiplier if speed_up else delta
@@ -93,6 +98,11 @@ func _process(delta):
 func finish():
 	if not finished:
 		finished = true
+		if to_scene != null:
+			var path = to_scene.get_path()
+			get_tree().change_scene(path)
+		else:
+			get_tree().quit()
 		# NOTE: This is called when the credits finish
 		# - Hook up your code to return to the relevant scene here, eg...
 		#get_tree().change_scene("res://scenes/MainMenu.tscn")
@@ -103,7 +113,15 @@ func add_line():
 	new_line.text = section.pop_front()
 	lines.append(new_line)
 	if curr_line == 0:
+		if title_font != null:
+			new_line.add_font_override("font", title_font)
 		new_line.add_color_override("font_color", title_color)
+	
+	else:
+		if text_font != null:
+			new_line.add_font_override("font", text_font)
+		new_line.add_color_override("font_color", text_color)
+	
 	$CreditsContainer.add_child(new_line)
 	
 	if section.size() > 0:
