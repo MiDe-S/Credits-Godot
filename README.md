@@ -22,7 +22,7 @@ res://
 - Scene Transitions
 
 ### Things to fix:
-[x] Some sizing issues
+- [x] Some sizing issues
 
 ######  * [x] = fixed
 
