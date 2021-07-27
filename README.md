@@ -25,6 +25,4 @@ res://
 ### Things to fix:
 Some sizing issues (FIXED)
 
-
-Forked From: https://github.com/benbishopnz/godot-credits
 ###### MIT LISENCE
