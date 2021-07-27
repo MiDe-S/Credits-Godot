@@ -22,7 +22,9 @@ res://
 - Scene Transitions
 
 ### Things to fix:
-- Some sizing issues
+[x] Some sizing issues
+
+######  * [x] = fixed
 
 Forked From: https://github.com/benbishopnz/godot-credits
 ###### MIT LISENCE
