@@ -21,6 +21,7 @@ res://
 
 ### Things that going to be added:
 - Scene Transitions
+- Custom Background Color
 
 ### Things to fix:
 Some sizing issues (FIXED)
