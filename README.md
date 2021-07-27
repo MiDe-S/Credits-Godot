@@ -16,15 +16,15 @@ res://
 ### Added:
 - Custom Colors
 - Custom Fonts
+- Music Support
+- Video Support
 
 ### Things that going to be added:
-- Music Support
 - Scene Transitions
 
 ### Things to fix:
-- [x] Some sizing issues
+Some sizing issues (FIXED)
 
-######  * [x] = fixed
 
 Forked From: https://github.com/benbishopnz/godot-credits
 ###### MIT LISENCE
