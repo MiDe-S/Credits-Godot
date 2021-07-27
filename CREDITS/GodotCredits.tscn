@@ -1,15 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://CREDITS/GodotCredits.gd" type="Script" id=1]
+[ext_resource path="res://FINAL FANTASY VII REMAKE OST - One Winged Angel Theme [HQ] LIVE ORCHESTRA & CHOIR CONCERT _ FF7 Music-ZXOnch6yEqg.mp3" type="AudioStream" id=2]
+[ext_resource path="res://title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://text.tres" type="DynamicFont" id=4]
+[ext_resource path="res://tinakarol.webm" type="VideoStream" id=5]
 
-[node name="GodotCredits" type="Node2D"]
+[node name="ArchuraCredits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title_font = ExtResource( 3 )
+text_font = ExtResource( 4 )
+Music = ExtResource( 2 )
+Video = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -18,16 +29,22 @@ __meta__ = {
 [node name="CreditsContainer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-
-[node name="Line" type="Label" parent="CreditsContainer"]
-anchor_right = 1.0
-margin_top = 1080.0
-margin_bottom = 1094.0
-size_flags_horizontal = 3
-text = "Credits line"
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Line" type="Label" parent="CreditsContainer"]
+anchor_right = 1.0
+margin_top = 1082.0
+margin_bottom = 1096.0
+size_flags_horizontal = 3
+text = "Credits line"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0

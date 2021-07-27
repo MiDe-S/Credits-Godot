@@ -1,10 +1,13 @@
-extends Node2D
+extends Control
 
 export var to_scene : PackedScene = null
 export var title_color := Color.blueviolet
 export var text_color := Color.white
 export var title_font : DynamicFont = null
 export var text_font : DynamicFont = null
+export var Music : AudioStream = null
+export var Use_Video_Audio : bool = false
+export var Video : VideoStreamWebm = null
 
 const section_time := 2.0
 const line_time := 0.3
@@ -14,6 +17,8 @@ const speed_up_multiplier := 10.0
 var scroll_speed : float = base_speed
 var speed_up := false
 
+
+onready var videoplayer := $VideoPlayer
 onready var line := $CreditsContainer/Line
 var started := false
 var finished := false
@@ -61,6 +66,17 @@ var credits = [
 	]
 ]
 
+func _ready():	
+	videoplayer.set_stream(Video)
+	if !Use_Video_Audio:
+		var stream = AudioStreamPlayer.new()
+		stream.set_stream(Music)
+		add_child(stream)
+		videoplayer.set_volume_db(-80)
+		stream.play()
+	else:
+		videoplayer.set_volume_db(0)
+	videoplayer.play()
 
 func _process(delta):
 	scroll_speed = base_speed * delta
