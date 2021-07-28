@@ -9,6 +9,7 @@ export var text_font : DynamicFont = null
 export var Music : AudioStream = null
 export var Use_Video_Audio : bool = false
 export var Video : VideoStreamWebm = null
+export var use_transitions : bool = false
 
 const section_time := 2.0
 const line_time := 0.3
@@ -70,6 +71,8 @@ var credits = [
 func _ready():
 	colorrect.color = bg_color
 	videoplayer.set_stream(Video)
+	if use_transitions:
+		$AnimationPlayer.play("Start")
 	if !Use_Video_Audio:
 		var stream = AudioStreamPlayer.new()
 		stream.set_stream(Music)
@@ -79,6 +82,7 @@ func _ready():
 	else:
 		videoplayer.set_volume_db(0)
 	videoplayer.play()
+	
 
 func _process(delta):
 	scroll_speed = base_speed * delta
@@ -116,6 +120,9 @@ func _process(delta):
 func finish():
 	if not finished:
 		finished = true
+		if use_transitions:
+			$AnimationPlayer.play("Finish")
+			yield($AnimationPlayer, "animation_finished")
 		if to_scene != null:
 			var path = to_scene.get_path()
 			get_tree().change_scene(path)
