@@ -19,8 +19,6 @@ res://
 - Music Support
 - Video Support
 - Custom Background Color
-
-### Things that going to be added:
 - Scene Transitions
 
 ### Things to fix:
