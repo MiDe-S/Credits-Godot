@@ -21,7 +21,4 @@ res://
 - Custom Background Color
 - Scene Transitions
 
-### Things to fix:
-Some sizing issues (FIXED)
-
 ###### MIT LISENCE
