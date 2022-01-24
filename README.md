@@ -1,5 +1,9 @@
-# AG-Credits
-A credits scene and script for Godot Engine
+
+<div align="center">
+   <img width="64" height="64" src="CREDITS/logo64.png" alt="Logo">
+   <h1>AG-Credits</h1>
+   A credits scene for Godot Engine.
+</div>
 
 ### How To Use:
 * Clone the repo
