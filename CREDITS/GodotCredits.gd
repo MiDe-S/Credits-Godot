@@ -1,27 +1,26 @@
 extends Control
 
-export var bg_color : Color = Color.black
-export var to_scene : PackedScene = null
-export var title_color := Color.blueviolet
-export var text_color := Color.white
-export var title_font : DynamicFont = null
-export var text_font : DynamicFont = null
-export var Music : AudioStream = null
-export var Use_Video_Audio : bool = false
-export var Video : VideoStreamWebm = null
-export var use_transitions : bool = false
+@export var bg_color : Color = Color.BLACK
+@export var to_scene : PackedScene = null
+@export var title_color := Color.BLUE_VIOLET
+@export var text_color := Color.WHITE
+@export var title_font : FontFile = null
+@export var text_font : FontFile = null
+@export var Music : AudioStream = null
+@export var Use_Video_Audio : bool = false
+@export var Video : VideoStream = null
 
 const section_time := 2.0
 const line_time := 0.3
-const base_speed := 100
+const base_speed := 70
 const speed_up_multiplier := 10.0
 
 var scroll_speed : float = base_speed
 var speed_up := false
 
-onready var colorrect := $ColorRect
-onready var videoplayer := $VideoPlayer
-onready var line := $CreditsContainer/Line
+@onready var colorrect := $ColorRect
+@onready var videoplayer := $VideoPlayer
+@onready var line := $CreditsContainer/Line
 var started := false
 var finished := false
 
@@ -71,8 +70,6 @@ var credits = [
 func _ready():
 	colorrect.color = bg_color
 	videoplayer.set_stream(Video)
-	if use_transitions:
-		$AnimationPlayer.play("Start")
 	if !Use_Video_Audio:
 		var stream = AudioStreamPlayer.new()
 		stream.set_stream(Music)
@@ -109,8 +106,8 @@ func _process(delta):
 	
 	if lines.size() > 0:
 		for l in lines:
-			l.rect_position.y -= scroll_speed
-			if l.rect_position.y < -l.get_line_height():
+			l.set_global_position(l.get_global_position() - Vector2(0, scroll_speed))
+			if l.get_global_position().y < l.get_line_height():
 				lines.erase(l)
 				l.queue_free()
 	elif started:
@@ -120,17 +117,11 @@ func _process(delta):
 func finish():
 	if not finished:
 		finished = true
-		if use_transitions:
-			$AnimationPlayer.play("Finish")
-			yield($AnimationPlayer, "animation_finished")
 		if to_scene != null:
 			var path = to_scene.get_path()
-			get_tree().change_scene(path)
+			get_tree().change_scene_to_file(path)
 		else:
 			get_tree().quit()
-		# NOTE: This is called when the credits finish
-		# - Hook up your code to return to the relevant scene here, eg...
-		#get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 
 func add_line():
@@ -139,13 +130,13 @@ func add_line():
 	lines.append(new_line)
 	if curr_line == 0:
 		if title_font != null:
-			new_line.add_font_override("font", title_font)
-		new_line.add_color_override("font_color", title_color)
+			new_line.set("theme_override_fonts/font", title_font)
+		new_line.set("theme_override_colors/font_color", title_color)
 	
 	else:
 		if text_font != null:
-			new_line.add_font_override("font", text_font)
-		new_line.add_color_override("font_color", text_color)
+			new_line.set("theme_override_fonts/font", text_font)
+		new_line.set("theme_override_colors/font_color", text_color)
 	
 	$CreditsContainer.add_child(new_line)
 	

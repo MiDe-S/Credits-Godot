@@ -6,8 +6,10 @@
 </div>
 
 ### How To Use:
-* Clone the repo
-* Copy "CREDITS" folder to your project folder
+* Download & Enable Addon OR
+* Clone the repo, Copy "CREDITS" folder to your project folder
+
+* Run get_tree().change_scene(filePath to GodotCredits.tscn)
 
 You should have this structure:
 ```
@@ -16,13 +18,18 @@ res://
    |->GodotCredits.gd
    |->GodotCredits.tscn
 ```
+### Options:
+- BG Color
+- Transition to Scene when credits end
+- Title Color
+- Text Color
+- Title Font
+- Text Font
+- Music
+- Video
+- Using video audio
 
-### Added:
-- Custom Colors
-- Custom Fonts
-- Music Support
-- Video Support
-- Custom Background Color
-- Scene Transitions
+### Ported to Godot 4 from:
+https://github.com/Draconis-25/AG-Credits
 
 ###### MIT LISENCE
